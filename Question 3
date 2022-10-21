@@ -1,0 +1,24 @@
+            mov.w #0003h, R4
+            mov.w #0003h, R5
+            mov.w #0001h, R6
+            mov.w #0000h, R7
+            mov.w #0000h, R9
+
+start:
+            and.w R5, R6
+            and.w R4, R6
+
+            xor.w R4, R7
+            xor.w R5, R7
+            and.w #0001h, R7
+
+            cmp.w #0001h, R6
+            jne next
+            mov.w #0FF0h, R9
+
+next:
+            cmp.w #0001h, R7
+            jne start
+            xor #00FFFFh, R9
+            mov.w R9, R10
+            jmp start
